@@ -8,4 +8,7 @@
         <property name="testValue" value="7"/>
     </bean>
 
+    <bean id="test2Service" class="service.Test2Service">
+        <property name="testService" ref="testService"/>
+    </bean>
 </beans>

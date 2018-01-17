@@ -3,6 +3,7 @@ package org.tingliang7t.spring.learn.io.reader.xml;
 import org.tingliang7t.spring.learn.io.ResourceLoader;
 import org.tingliang7t.spring.learn.io.reader.AbstractBeanDefinitionReader;
 import org.tingliang7t.spring.learn.ioc.bean.BeanDefinition;
+import org.tingliang7t.spring.learn.ioc.bean.BeanReference;
 import org.tingliang7t.spring.learn.ioc.bean.Property;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -74,12 +75,27 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader{
         NodeList propertyNodes = element.getElementsByTagName("property");
 
         for(int i = 0; i<propertyNodes.getLength(); i++){
+
             Node node = propertyNodes.item(i);
+
             if (node instanceof Element){
+
                 Element property = (Element) node;
                 String name = property.getAttribute("name");
                 String value = property.getAttribute("value");
-                beanDefinition.getProperties().addProperty(new Property(name, value));
+
+                if (value != null && value.length() > 0){
+                    beanDefinition.getProperties().addProperty(new Property(name, value));
+                }else{
+                    String ref = property.getAttribute("ref");
+                    if (ref == null || ref.length() == 0){
+                        throw new IllegalArgumentException("Configuration problem: <property> element for property '"
+                                + name + "' must specify a ref or value");
+                    }
+
+                    BeanReference beanRef = new BeanReference(ref);
+                    beanDefinition.getProperties().addProperty(new Property(name, beanRef));
+                }
             }
         }
     }

@@ -1,14 +1,15 @@
 package org.tingliang7t.spring.learn.ioc.bean;
 
-public class Property {
+public class BeanReference {
 
     private String name;
     private Object value;
 
+    public BeanReference() {
+    }
 
-    public Property(String name, Object value) {
+    public BeanReference(String name) {
         this.name = name;
-        this.value = value;
     }
 
     public String getName() {

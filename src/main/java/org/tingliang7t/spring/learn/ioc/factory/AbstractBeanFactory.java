@@ -11,14 +11,25 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     @Override
     public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws Exception{
-        Object bean = createBean(beanDefinition);
-        beanDefinition.setBean(bean);
         beanDefinitionMap.put(beanName, beanDefinition);
     }
 
     @Override
-    public Object getBean(String beanName){
-        return beanDefinitionMap.get(beanName).getBean();
+    public Object getBean(String beanName)throws Exception{
+
+        BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
+
+        if (beanDefinition == null) {
+            throw new IllegalArgumentException("No bean named " + beanName + " is defined");
+        }
+
+        Object bean = beanDefinition.getBean();
+
+        if (bean == null){
+            bean = createBean(beanDefinition);
+        }
+
+        return bean;
     }
 
     protected abstract Object createBean(BeanDefinition beanDefinition) throws Exception;

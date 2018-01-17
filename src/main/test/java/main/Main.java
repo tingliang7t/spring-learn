@@ -4,7 +4,7 @@ import org.tingliang7t.spring.learn.io.ResourceLoader;
 import org.tingliang7t.spring.learn.io.reader.xml.XmlBeanDefinitionReader;
 import org.tingliang7t.spring.learn.ioc.factory.AutowireBeanFactory;
 import org.tingliang7t.spring.learn.ioc.factory.BeanFactory;
-import service.TestService;
+import service.Test2Service;
 
 
 public class Main {
@@ -23,8 +23,9 @@ public class Main {
                 autowireBeanFactory.registerBeanDefinition(beanName, beanDefinitionReader.getRegister().get(beanName));
             }
 
-            TestService testService = (TestService)autowireBeanFactory.getBean("testService");
-            testService.printValue();
+            Test2Service test2Service = (Test2Service)autowireBeanFactory.getBean("test2Service");
+
+            test2Service.service();
 
         }catch (Exception e){
 

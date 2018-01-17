@@ -1,6 +1,7 @@
 package org.tingliang7t.spring.learn.ioc.factory;
 
 import org.tingliang7t.spring.learn.ioc.bean.BeanDefinition;
+import org.tingliang7t.spring.learn.ioc.bean.BeanReference;
 import org.tingliang7t.spring.learn.ioc.bean.Properties;
 import org.tingliang7t.spring.learn.ioc.bean.Property;
 
@@ -30,9 +31,15 @@ public class AutowireBeanFactory extends AbstractBeanFactory{
         for(Property property : properties){
             Field field = bean.getClass().getDeclaredField(property.getName());
             field.setAccessible(true);
-            field.set(bean, property.getValue());
-        }
 
+            Object value = property.getValue();
+            if (value instanceof BeanReference){
+                BeanReference beanReference = (BeanReference)value;
+                field.set(bean, getBean(beanReference.getName()));
+            }else{
+                field.set(bean, value);
+            }
+        }
     }
 
 }
