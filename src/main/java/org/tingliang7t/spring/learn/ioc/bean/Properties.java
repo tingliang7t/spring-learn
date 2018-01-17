@@ -1,30 +1,32 @@
 package org.tingliang7t.spring.learn.ioc.bean;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Properties implements Iterable<Property>{
 
-    private List<Property> properties;
+    private Set<Property> properties;
 
     public Properties() {
-        this.properties = new LinkedList<Property>();
+        this.properties = new HashSet<>();
     }
 
-    public Properties(List<Property> properties){
+    public Properties(Set<Property> properties){
         this.properties = properties;
     }
 
-    public List<Property> getProperties() {
+    public Set<Property> getProperties() {
         return properties;
     }
 
-    public void setProperties(List<Property> properties) {
+    public void setProperties(Set<Property> properties) {
         this.properties = properties;
     }
 
     public Iterator<Property> iterator(){
         return properties.iterator();
+    }
+
+    public void addProperty(Property property){
+        properties.add(property);
     }
 }
