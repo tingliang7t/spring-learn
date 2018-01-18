@@ -21,11 +21,14 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 
     @Override
     public void refresh() throws Exception{
+
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
         beanDefinitionReader.loadBeanDefinitions(configLocation);
 
         for(String beanName : beanDefinitionReader.getRegister().keySet()){
             beanFactory.registerBeanDefinition(beanName, beanDefinitionReader.getRegister().get(beanName));
         }
+
+        beanFactory.preInstantiateSingletons();
     }
 }
