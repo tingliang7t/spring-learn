@@ -2,16 +2,22 @@ package org.tingliang7t.spring.learn.ioc.factory;
 
 import org.tingliang7t.spring.learn.ioc.bean.BeanDefinition;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public abstract class AbstractBeanFactory implements BeanFactory {
 
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
+    private List<String> singletonBeanNames = new ArrayList<>();
+
     @Override
     public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws Exception{
         beanDefinitionMap.put(beanName, beanDefinition);
+        singletonBeanNames.add(beanName);
     }
 
     @Override
@@ -30,6 +36,13 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         }
 
         return bean;
+    }
+
+    protected void preInstantiateSingletons() throws Exception{
+
+        for(String beanName : singletonBeanNames){
+            getBean(beanName);
+        }
     }
 
     protected abstract Object createBean(BeanDefinition beanDefinition) throws Exception;
