@@ -14,7 +14,6 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     private List<String> singletonBeanNames = new ArrayList<>();
 
-    @Override
     public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws Exception{
         beanDefinitionMap.put(beanName, beanDefinition);
         singletonBeanNames.add(beanName);
