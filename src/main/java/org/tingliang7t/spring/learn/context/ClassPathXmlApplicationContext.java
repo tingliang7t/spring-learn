@@ -29,6 +29,6 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
             beanFactory.registerBeanDefinition(beanName, beanDefinitionReader.getRegister().get(beanName));
         }
 
-        beanFactory.preInstantiateSingletons();
+        beanFactory.preInstantiateSingletonBeans();
     }
 }

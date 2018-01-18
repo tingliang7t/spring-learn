@@ -38,7 +38,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         return bean;
     }
 
-    public void preInstantiateSingletons() throws Exception{
+    public void preInstantiateSingletonBeans() throws Exception{
 
         for(String beanName : singletonBeanNames){
             getBean(beanName);
