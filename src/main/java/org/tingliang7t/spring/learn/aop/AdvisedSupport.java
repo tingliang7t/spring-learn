@@ -1,6 +1,7 @@
 package org.tingliang7t.spring.learn.aop;
 
-import net.sf.cglib.proxy.MethodInterceptor;
+
+import org.aopalliance.intercept.MethodInterceptor;
 
 public class AdvisedSupport {
 
