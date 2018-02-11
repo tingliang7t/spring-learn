@@ -1,7 +1,5 @@
 package org.tingliang7t.spring.learn.aop;
 
-
-
 import org.aopalliance.intercept.MethodInterceptor;
 
 import java.lang.reflect.InvocationHandler;
@@ -28,6 +26,6 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
     @Override
     public Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable{
         MethodInterceptor methodInterceptor = advised.getMethodInterceptor();
-        return methodInterceptor.invoke(new ReflectiveMethodInvocation(advised.getTargetSource(), method, args));
+        return methodInterceptor.invoke(new ReflectiveMethodInvocation(advised.getTargetSource().getTarget(), method, args));
     }
 }

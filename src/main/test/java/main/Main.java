@@ -2,6 +2,7 @@ package main;
 
 import org.tingliang7t.spring.learn.io.ResourceLoader;
 import org.tingliang7t.spring.learn.io.reader.xml.XmlBeanDefinitionReader;
+import org.tingliang7t.spring.learn.ioc.factory.AbstractBeanFactory;
 import org.tingliang7t.spring.learn.ioc.factory.AutowireBeanFactory;
 import org.tingliang7t.spring.learn.ioc.factory.BeanFactory;
 import service.Test2Service;
@@ -18,7 +19,7 @@ public class Main {
         try {
             beanDefinitionReader.loadBeanDefinitions(resource);
 
-            BeanFactory autowireBeanFactory = new AutowireBeanFactory();
+            AbstractBeanFactory autowireBeanFactory = new AutowireBeanFactory();
             for (String beanName : beanDefinitionReader.getRegister().keySet()) {
                 autowireBeanFactory.registerBeanDefinition(beanName, beanDefinitionReader.getRegister().get(beanName));
             }
