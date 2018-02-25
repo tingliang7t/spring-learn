@@ -2,21 +2,21 @@ package org.tingliang7t.spring.learn.aop;
 
 public class TargetSource {
 
-    private Class  targetClass;
+    private Class<?>[]  targetClass;
     private Object target;
 
     public TargetSource(){}
 
-    public TargetSource(Class<?> targetClass, Object target) {
+    public TargetSource(Object target, Class<?>[] targetClass){
         this.targetClass = targetClass;
         this.target = target;
     }
 
-    public Class getTargetClass() {
+    public Class<?>[] getTargetClass() {
         return targetClass;
     }
 
-    public void setTargetClass(Class targetClass) {
+    public void setTargetClass(Class<?>[] targetClass) {
         this.targetClass = targetClass;
     }
 

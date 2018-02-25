@@ -7,6 +7,7 @@ public class AdvisedSupport {
 
     private TargetSource targetSource;
     private MethodInterceptor methodInterceptor;
+    private MethodMatcher methodMatcher;
 
     public TargetSource getTargetSource() {
         return targetSource;
@@ -22,5 +23,13 @@ public class AdvisedSupport {
 
     public void setMethodInterceptor(MethodInterceptor methodInterceptor) {
         this.methodInterceptor = methodInterceptor;
+    }
+
+    public MethodMatcher getMethodMatcher() {
+        return methodMatcher;
+    }
+
+    public void setMethodMatcher(MethodMatcher methodMatcher) {
+        this.methodMatcher = methodMatcher;
     }
 }
