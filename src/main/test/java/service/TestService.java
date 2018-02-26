@@ -1,6 +1,6 @@
 package service;
 
-public class TestService {
+public class TestService implements PrintValueService{
 
     private String testValue;
 
